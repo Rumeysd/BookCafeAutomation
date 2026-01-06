@@ -1,0 +1,35 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BookCafeAutomation.Application.Contracts/BookCafeAutomation.Application.Contracts.csproj" />
+    <Project Path="src/BookCafeAutomation.Application/BookCafeAutomation.Application.csproj" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Project Path="src/BookCafeAutomation.DbMigrator/BookCafeAutomation.DbMigrator.csproj" />
+    <Project Path="src/BookCafeAutomation.Domain.Shared/BookCafeAutomation.Domain.Shared.csproj" />
+    <Project Path="src/BookCafeAutomation.Domain/BookCafeAutomation.Domain.csproj" />
+    <Project Path="src/BookCafeAutomation.EntityFrameworkCore/BookCafeAutomation.EntityFrameworkCore.csproj" />
+    <Project Path="src/BookCafeAutomation.HttpApi.Client/BookCafeAutomation.HttpApi.Client.csproj" />
+    
+    <Project Path="src/BookCafeAutomation.HttpApi.Host/BookCafeAutomation.HttpApi.Host.csproj" />
+    <Project Path="src/BookCafeAutomation.HttpApi/BookCafeAutomation.HttpApi.csproj" />
+    
+    
+    
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/BookCafeAutomation.Application.Tests/BookCafeAutomation.Application.Tests.csproj" />
+    <Project Path="test/BookCafeAutomation.Domain.Tests/BookCafeAutomation.Domain.Tests.csproj" />
+    <Project Path="test/BookCafeAutomation.EntityFrameworkCore.Tests/BookCafeAutomation.EntityFrameworkCore.Tests.csproj" />
+    <Project Path="test/BookCafeAutomation.HttpApi.Client.ConsoleTestApp/BookCafeAutomation.HttpApi.Client.ConsoleTestApp.csproj" />
+    
+    <Project Path="test/BookCafeAutomation.TestBase/BookCafeAutomation.TestBase.csproj" />
+    
+  </Folder>
+</Solution>
