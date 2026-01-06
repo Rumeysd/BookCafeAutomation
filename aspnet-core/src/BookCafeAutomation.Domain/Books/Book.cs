@@ -1,7 +1,6 @@
 ﻿using System;
 using Volo.Abp.Domain.Entities.Auditing;
-
-namespace DENEME.Books
+namespace BookCafeAutomation.Books
 {
     public class Book : FullAuditedAggregateRoot<Guid>
     {

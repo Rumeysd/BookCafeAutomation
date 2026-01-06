@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BookCafeAutomation.Authors;
+using BookCafeAutomation.Books;
+using BookCafeAutomation.Categories;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -12,6 +15,14 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using BookCafeAutomation.Authors;
+using BookCafeAutomation.BookActions;
+using BookCafeAutomation.BookNotes;
+using BookCafeAutomation.BookReservations;
+using BookCafeAutomation.Books;
+using BookCafeAutomation.Categories;
+using BookCafeAutomation.Customers;
+
 
 namespace BookCafeAutomation.EntityFrameworkCore;
 
@@ -22,8 +33,17 @@ public class BookCafeAutomationDbContext :
     AbpDbContext<BookCafeAutomationDbContext>,
     IIdentityDbContext,
     ITenantManagementDbContext
+
+
+
 {
-    /* Add DbSet properties for your Aggregate Roots / Entities here. */
+    public DbSet<Book> Books { get; set; }
+    public DbSet<Author> Authors { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<BookAction> BookActions { get; set; }
+    public DbSet<BookNote> Notes { get; set; }
+    public DbSet<BookReservation> Reservations { get; set; }
+    public DbSet<Customer> Customers { get; set; }
 
     #region Entities from the modules
 
@@ -56,6 +76,7 @@ public class BookCafeAutomationDbContext :
     public BookCafeAutomationDbContext(DbContextOptions<BookCafeAutomationDbContext> options)
         : base(options)
     {
+
 
     }
 

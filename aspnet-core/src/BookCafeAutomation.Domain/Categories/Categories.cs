@@ -1,7 +1,7 @@
 ﻿using System;
 using Volo.Abp.Domain.Entities.Auditing;
 
-namespace DENEME.Categories;
+namespace BookCafeAutomation.Categories;
 
     public class Category : FullAuditedAggregateRoot<Guid>
     {

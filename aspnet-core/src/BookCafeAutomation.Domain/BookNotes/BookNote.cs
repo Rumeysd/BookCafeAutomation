@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.Domain.Entities.Auditing;
 
-namespace DENEME.BookNotes
+namespace BookCafeAutomation.BookNotes
 {
     public class BookNote :  FullAuditedAggregateRoot<Guid>
     {

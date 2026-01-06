@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BookCafeAutomation.Authors
 {
-    internal class CreateUpdateDto
+    public class CreateUpdateAuthorDto
     {
+        [Required]
+        [StringLength(128)]
+        public string Name { get; set; }
+
+        public string ShortBio { get; set; }
     }
 }
