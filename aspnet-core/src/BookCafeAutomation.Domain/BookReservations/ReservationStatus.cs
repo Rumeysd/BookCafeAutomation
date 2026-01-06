@@ -1,4 +1,4 @@
-﻿namespace DENEME.BookReservations
+﻿namespace BookCafeAutomation.BookReservations
 {
     public enum ReservationStatus
     {

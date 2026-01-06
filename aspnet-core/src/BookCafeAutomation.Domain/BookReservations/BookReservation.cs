@@ -1,7 +1,7 @@
 ﻿using System;
 using Volo.Abp.Domain.Entities.Auditing;
 
-namespace DENEME.BookReservations
+namespace BookCafeAutomation.BookReservations
 {
     // DÜZELTME 1: ABP'den miras aldık (ID ve Audit özellikleri geldi)
     public class BookReservation : FullAuditedAggregateRoot<Guid>
