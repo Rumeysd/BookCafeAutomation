@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations; // [Required] için gerekli
 
 namespace BookCafeAutomation.Books
@@ -24,5 +25,6 @@ namespace BookCafeAutomation.Books
 
         public BookStatus Status { get; set; } = BookStatus.Available;
 
+        public List<BookImageDto> Images { get; set; }
     }
 }

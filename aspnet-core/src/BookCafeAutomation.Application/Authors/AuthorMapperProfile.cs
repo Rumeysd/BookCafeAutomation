@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AutoMapper;
+using BookCafeAutomation.Authors;
 
-namespace BookCafeAutomation.Authors
+namespace BookCafeAutomation.Authors;
+
+public class AuthorMapperProfile : Profile
 {
-    internal class AuthorMapperProfile
+    public AuthorMapperProfile()
     {
+        CreateMap<Author, AuthorDto>();
+        CreateMap<CreateUpdateAuthorDto, Author>();
     }
 }

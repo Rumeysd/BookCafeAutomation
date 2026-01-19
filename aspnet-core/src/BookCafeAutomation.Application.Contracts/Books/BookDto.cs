@@ -20,5 +20,7 @@ namespace BookCafeAutomation.Books
 
         public BookStatus Status { get; set; }
 
+        public List<BookImageDto> Images { get; set; }
+
     }
 }
