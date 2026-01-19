@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookCafeAutomation.Books;
+using BookCafeAutomation.Customers;
+using System;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace BookCafeAutomation.BookReservations
@@ -7,10 +9,12 @@ namespace BookCafeAutomation.BookReservations
     public class BookReservation : FullAuditedAggregateRoot<Guid>
     {
         public Guid BookId { get; set; }
+        public virtual Book Book { get; set; }
 
         public Guid CustomerId { get; set; }
+        public virtual Customer Customer { get; set; }
 
-        
+
         public ReservationStatus Status { get; set; }
 
        

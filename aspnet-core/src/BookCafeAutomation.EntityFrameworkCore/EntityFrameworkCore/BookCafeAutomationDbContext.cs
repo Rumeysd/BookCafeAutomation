@@ -178,5 +178,42 @@ public class BookCafeAutomationDbContext :
             b.ToTable(BookCafeAutomationConsts.DbTablePrefix + "BookReservations", BookCafeAutomationConsts.DbSchema);
             b.ConfigureByConvention();
         });
+
+        builder.Entity<BookReservation>(b =>
+        {
+            b.ToTable(BookCafeAutomationConsts.DbTablePrefix + "BookReservations", BookCafeAutomationConsts.DbSchema);
+            b.ConfigureByConvention();
+
+            // Kitap İlişkisi
+            b.HasOne(x => x.Book)
+                .WithMany()
+                .HasForeignKey(x => x.BookId)
+                .IsRequired();
+
+            // Müşteri İlişkisi
+            b.HasOne(x => x.Customer)
+                .WithMany()
+                .HasForeignKey(x => x.CustomerId)
+                .IsRequired();
+        });
+
+        // BookAction Konfigürasyonu
+        builder.Entity<BookAction>(b =>
+        {
+            b.ToTable(BookCafeAutomationConsts.DbTablePrefix + "BookActions", BookCafeAutomationConsts.DbSchema);
+            b.ConfigureByConvention();
+
+            // Kitap İlişkisi (Zorunlu)
+            b.HasOne(x => x.Book)
+                .WithMany()
+                .HasForeignKey(x => x.BookId)
+                .IsRequired();
+
+            // Müşteri İlişkisi (Zorunlu)
+            b.HasOne(x => x.Customer)
+                .WithMany()
+                .HasForeignKey(x => x.CustomerId)
+                .IsRequired();
+        });
     }
 }

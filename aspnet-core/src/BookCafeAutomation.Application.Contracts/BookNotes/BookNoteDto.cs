@@ -7,6 +7,7 @@ namespace BookCafeAutomation.BookNotes
     {
         public Guid BookId { get; set; }
         public string Note { get; set; }
-        public bool IsPublic { get; set; } // Herkes görebilir mi?
+        public bool IsPublic { get; set; }
+        public string BookName { get; set; }
     }
 }
