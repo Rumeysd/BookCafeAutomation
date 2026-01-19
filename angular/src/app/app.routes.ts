@@ -6,6 +6,12 @@ export const appRoutes: Routes = [
     pathMatch: 'full',
     loadChildren: () => import('./home/home.routes').then(m => m.homeRoutes),
   },
+  // 👇 KİTAPLAR ROTASINI BURAYA EKLEDİM
+  {
+    path: 'books',
+    // Component standalone olduğu için 'loadChildren' yerine 'loadComponent' kullanıyoruz
+    loadComponent: () => import('./books/books.component').then(m => m.BooksComponent),
+  },
   {
     path: 'account',
     loadChildren: () => import('@abp/ng.account').then(m => m.createRoutes()),

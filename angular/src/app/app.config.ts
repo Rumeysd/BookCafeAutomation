@@ -36,7 +36,7 @@ export const appConfig: ApplicationConfig = {
     provideTenantManagementConfig(),
     provideFeatureManagementConfig(),
     provideAnimations(),
-    provideLogo(withEnvironmentOptions(environment)),
+    //provideLogo(withEnvironmentOptions(environment)),
     provideAbpThemeShared(withValidationBluePrint({
         wrongPassword: 'Please choose 1q2w3E*'
     })),

@@ -29,7 +29,7 @@ namespace BookCafeAutomation.BookReservations
         {
             BookId = bookId;
             CustomerId = customerId;
-            Status = ReservationStatus.Waiting; 
+            Status = ReservationStatus.InQueue; 
         }
     }
 }

@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row align-items-center">
+      <div class="col">
+        <h5 class="card-title m-0">📚 Kitap Yönetimi</h5>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary btn-sm" (click)="openCreateModal()">
+          <i class="fa fa-plus me-1"></i> Yeni Kitap
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body p-0">
+    <table class="table table-striped table-hover align-middle mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>Kitap Adı</th>
+          <th>Yazar</th>
+          <th>Kategori</th>
+          <th>Sayfa</th>
+          <th>Durum</th>
+          <th style="width: 100px;">İşlemler</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of bookList.items">
+          <td class="fw-bold">{{ book.name }}</td>
+          <td>{{ book.authorName }}</td>
+          <td><span class="badge bg-info text-dark">{{ book.categoryName }}</span></td>
+          <td>{{ book.pageCount }}</td>
+          <td>
+            <span [class]="getStatusClass(book.status)">
+                {{ getStatusLabel(book.status) | abpLocalization }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="deleteBook(book)">
+                <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-create-book #createBookModal (onSave)="refreshList()"></app-create-book>

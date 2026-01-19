@@ -14,5 +14,7 @@ namespace BookCafeAutomation.BookReservations
         public DateTime ReservationDate { get; set; }
         public DateTime? ExpirationDate { get; set; } // Ne zamana kadar geçerli?
         public bool IsActive { get; set; }
+
+        public ReservationStatus Status { get; set; }
     }
 }

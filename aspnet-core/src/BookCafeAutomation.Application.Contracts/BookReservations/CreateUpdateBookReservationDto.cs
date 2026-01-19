@@ -13,5 +13,8 @@ namespace BookCafeAutomation.BookReservations
 
         [Required]
         public DateTime ReservationDate { get; set; }
+
+        public ReservationStatus Status { get; set; }
+
     }
 }

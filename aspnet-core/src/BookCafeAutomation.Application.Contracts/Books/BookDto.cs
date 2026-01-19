@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Volo.Abp.Application.Dtos;
 
 namespace BookCafeAutomation.Books
 {
-    public class BookDto
+    public class BookDto : EntityDto<Guid>
     {
         public string Name { get; set; }
 

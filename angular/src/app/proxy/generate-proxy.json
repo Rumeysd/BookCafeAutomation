@@ -6486,6 +6486,19 @@
           "maximum": null,
           "regex": null,
           "isNullable": false
+        },
+        {
+          "name": "Status",
+          "jsonName": null,
+          "type": "BookCafeAutomation.BookReservations.ReservationStatus",
+          "typeSimple": "enum",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
         }
       ]
     },
@@ -6534,11 +6547,44 @@
           "maximum": null,
           "regex": null,
           "isNullable": false
+        },
+        {
+          "name": "Status",
+          "jsonName": null,
+          "type": "BookCafeAutomation.BookReservations.ReservationStatus",
+          "typeSimple": "enum",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
         }
       ]
     },
+    "BookCafeAutomation.BookReservations.ReservationStatus": {
+      "baseType": "System.Enum",
+      "isEnum": true,
+      "enumNames": [
+        "InQueue",
+        "ReadyForPickup",
+        "Completed",
+        "Canceled",
+        "Expired"
+      ],
+      "enumValues": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "genericArguments": null,
+      "properties": null
+    },
     "BookCafeAutomation.Books.BookDto": {
-      "baseType": null,
+      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
       "isEnum": false,
       "enumNames": null,
       "enumValues": null,

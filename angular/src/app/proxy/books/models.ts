@@ -1,6 +1,7 @@
+import type { EntityDto } from '@abp/ng.core';
 import type { BookStatus } from './book-status.enum';
 
-export interface BookDto {
+export interface BookDto extends EntityDto<string> {
   name?: string;
   categoryId?: string;
   categoryName?: string;
