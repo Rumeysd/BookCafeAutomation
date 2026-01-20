@@ -4,6 +4,15 @@
     "AppName": "BookCafeAutomation",
     "Menu:Home": "Ana sayfa",
     "Welcome": "Hoşgeldiniz",
-    "LongWelcomeMessage": "Uygulamaya hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir başlangıç projesidir. Daha fazla bilgi için abp.io adresini ziyaret edebilirsiniz."
+    "LongWelcomeMessage": "Uygulamaya hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir başlangıç projesidir. Daha fazla bilgi için abp.io adresini ziyaret edebilirsiniz.",
+    "NewBook": "Yeni Kitap",
+    "BookName": "Kitap Adı",
+    "Enum:Status.Available": "Müsait",
+    "Enum:Status.Taken": "Dışarıda",
+    "Enum:Status.Reserved": "Rezerve",
+    "SavedSuccessfully": "Başarıyla Kaydedildi",
+    "AreYouSureToDelete": "{0} isimli kitabı silmek istediğinize emin misiniz?"
   }
+
+  
 }

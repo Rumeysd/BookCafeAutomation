@@ -3,6 +3,7 @@ using System;
 using BookCafeAutomation.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace BookCafeAutomation.Migrations
 {
     [DbContext(typeof(BookCafeAutomationDbContext))]
-    partial class BookCafeAutomationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260120105259_RemoveShadowPropertyBookId1")]
+    partial class RemoveShadowPropertyBookId1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -382,6 +385,9 @@ namespace BookCafeAutomation.Migrations
                     b.Property<Guid>("BookId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("BookId1")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
@@ -428,6 +434,8 @@ namespace BookCafeAutomation.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BookId");
+
+                    b.HasIndex("BookId1");
 
                     b.ToTable("AppBookImages", (string)null);
                 });
@@ -2413,9 +2421,15 @@ namespace BookCafeAutomation.Migrations
 
             modelBuilder.Entity("BookCafeAutomation.Books.BookImage", b =>
                 {
-                    b.HasOne("BookCafeAutomation.Books.Book", "Book")
+                    b.HasOne("BookCafeAutomation.Books.Book", null)
                         .WithMany("Images")
                         .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookCafeAutomation.Books.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
