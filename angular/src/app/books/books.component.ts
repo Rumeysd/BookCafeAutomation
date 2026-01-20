@@ -3,22 +3,26 @@ import { CommonModule } from '@angular/common';
 import { BookService, BookDto } from '@proxy/books'; 
 import { PagedResultDto, CoreModule } from '@abp/ng.core'; 
 import { CreateBookComponent } from './create-book/create-book.component'; 
-import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared';
+import { ConfirmationService, Confirmation, ThemeSharedModule } from '@abp/ng.theme.shared'; // ThemeSharedModule eklendi
 import { bookStatusOptions } from './../book-reservations/enum/book-status.enum'; 
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [CommonModule, CreateBookComponent, CoreModule], 
+  // ThemeSharedModule eklenerek abp-modal hatası çözüldü
+  imports: [CommonModule, CreateBookComponent, CoreModule, ThemeSharedModule], 
   templateUrl: './books.component.html',
   styleUrl: './books.component.scss'
 })
 export class BooksComponent implements OnInit {
-  // Alt bileşene (CreateBookComponent) erişim sağlıyoruz
   @ViewChild('createBookModal') createBookModal: CreateBookComponent;
 
   bookList: PagedResultDto<BookDto> = { items: [], totalCount: 0 };
   statusOptions = bookStatusOptions;
+
+  // Detay Modalı İçin Gerekli Değişkenler
+  isDetailsModalOpen = false; // Hata 2339 çözümü
+  selectedBook: BookDto | null = null; 
 
   constructor(
     private bookService: BookService,
@@ -29,17 +33,32 @@ export class BooksComponent implements OnInit {
     this.refreshList();
   }
 
-  refreshList() {
-    this.bookService.getList({ maxResultCount: 10, skipCount: 0 }).subscribe(response => {
-      this.bookList = response;
-    });
-  }
+ refreshList() {
+  this.bookService.getList({ maxResultCount: 10, skipCount: 0 }).subscribe(response => {
+    this.bookList = response;
+    
+    // // Her kitap için resim çekme denemesi yap
+    // this.bookList.items.forEach(book => {
+    //   if (book.images && book.images.length > 0) {
+    //     this.bookService.getBookImage(book.images[0].blobName).subscribe({
+    //       next: (base64) => (book as any).imageUrl = base64,
+    //       error: () => (book as any).imageUrl = null // Hata olursa ikon gösterilsin
+    //     });
+    //   }
+    // });
+  });
+}
 
-  // Butona basıldığında çalışan fonksiyon
   createBook() {
     if (this.createBookModal) {
-      this.createBookModal.openModal(); // Alt bileşendeki modal açma fonksiyonunu çağırır
+      this.createBookModal.openModal();
     }
+  }
+
+  // Detay Modalını Açan Fonksiyon
+  openDetails(book: BookDto) {
+    this.selectedBook = book;
+    this.isDetailsModalOpen = true; // Modalı görünür yapar
   }
 
   deleteBook(book: BookDto) {
@@ -47,22 +66,19 @@ export class BooksComponent implements OnInit {
       messageLocalizationParams: [book.name] 
     }).subscribe((status) => {
       if (status === Confirmation.Status.confirm) {
-        this.bookService.delete((book as any).id).subscribe(() => this.refreshList());
+        this.bookService.delete(book.id).subscribe(() => this.refreshList());
       }
     });
   }
 
-  // Durumun rengini döndürür (badge bg-success vb.)
   getStatusClass(status: number): string {
     const found = this.statusOptions.find(x => x.value === status);
     return found ? found.class : 'badge bg-secondary';
   }
 
-  // Localization dosyasındaki "Enum:Status.Available" gibi anahtarları döndürür
   getStatusLabel(status: number): string {
     const found = this.statusOptions.find(x => x.value === status);
-    // Eğer enum değerin 0 ise ve 'Available' metnine karşılık geliyorsa:
-    // Bu fonksiyon "Enum:Status.Available" döndürmeli
     return found ? found.key : '::Unknown';
   }
+  
 }

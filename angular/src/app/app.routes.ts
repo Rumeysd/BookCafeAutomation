@@ -1,15 +1,13 @@
 import { Routes } from '@angular/router';
+// 👇 BURAYI DEĞİŞTİR: Kendi klasöründeki login componentini çağırıyoruz
+import { LoginComponent } from './login/login.component'; 
 
 export const appRoutes: Routes = [
-  {
-    path: '',
-    pathMatch: 'full',
-    loadChildren: () => import('./home/home.routes').then(m => m.homeRoutes),
-  },
-  // 👇 KİTAPLAR ROTASINI BURAYA EKLEDİM
+ { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent }, // Artık senin şık tasarımın görünecek!
+  
   {
     path: 'books',
-    // Component standalone olduğu için 'loadChildren' yerine 'loadComponent' kullanıyoruz
     loadComponent: () => import('./books/books.component').then(m => m.BooksComponent),
   },
   {
@@ -22,12 +20,10 @@ export const appRoutes: Routes = [
   },
   {
     path: 'tenant-management',
-    loadChildren: () =>
-      import('@abp/ng.tenant-management').then(m => m.createRoutes()),
+    loadChildren: () => import('@abp/ng.tenant-management').then(m => m.createRoutes()),
   },
   {
     path: 'setting-management',
-    loadChildren: () =>
-      import('@abp/ng.setting-management').then(m => m.createRoutes()),
+    loadChildren: () => import('@abp/ng.setting-management').then(m => m.createRoutes()),
   },
 ];

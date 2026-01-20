@@ -1,0 +1,277 @@
+$primary-orange: #e67e22;
+$dark-text: #4e342e;
+$light-text: #6d4c41;
+$bg-color: #f5e0c8; // Görseldeki o açık krem tonu
+
+.login-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: $bg-color;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 5%;
+}
+
+// Üst Menü (Header)
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  z-index: 10;
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .brand-name {
+      font-weight: 700;
+      color: $dark-text;
+      font-size: 0.9rem;
+    }
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    a {
+      text-decoration: none;
+      color: $dark-text;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .btn-signup {
+      background-color: $primary-orange;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+}
+
+// Ana İçerik
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  z-index: 5;
+
+  .text-section {
+    max-width: 450px;
+
+    .title {
+      font-size: 3.5rem;
+      color: $dark-text;
+      margin-bottom: 20px;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      color: $light-text;
+      line-height: 1.5;
+      margin-bottom: 40px;
+    }
+  }
+
+  .form-container {
+    .input-wrapper {
+      position: relative;
+      margin-bottom: 20px;
+
+      input {
+        width: 100%;
+        padding: 18px 25px;
+        border-radius: 12px;
+        border: 1px solid rgba(0,0,0,0.1);
+        font-size: 1rem;
+        background: white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      }
+
+      .user-icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.5;
+      }
+    }
+
+    .btn-login {
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      padding: 15px 50px;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 15px rgba(243, 156, 18, 0.3);
+    }
+  }
+}
+
+.image-section {
+  .hero-image {
+    width: 550px; // Görseldeki kitaplık boyutu
+    height: auto;
+    display: block;
+  }
+}
+
+// Arka Plan Şekilleri (Blobs)
+.shape {
+  position: absolute;
+  z-index: 1;
+}
+
+.blob-left-top {
+  width: 200px; height: 300px;
+  background: #e1955d;
+  border-radius: 0 100px 100px 0;
+  top: 10%; left: -50px;
+  opacity: 0.7;
+}
+
+.circle-orange {
+  width: 80px; height: 80px;
+  background: #f19035;
+  border-radius: 50%;
+  top: 35%; left: 45%;
+}
+
+.circle-purple {
+  width: 90px; height: 90px;
+  background: #9356b9;
+  border-radius: 50%;
+  top: 48%; left: 43%;
+}
+
+.blob-bottom-center {
+  width: 300px; height: 150px;
+  background: #9356b9;
+  border-radius: 150px 150px 0 0;
+  bottom: -20px; left: 35%;
+  opacity: 0.6;
+}
+
+.blob-right-bottom {
+  width: 200px; height: 200px;
+  background: #f19035;
+  border-radius: 100px 0 0 100px;
+  bottom: 10%; right: -50px;
+  opacity: 0.8;
+
+}
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start; // Başlangıçta solda kalsın ama...
+  z-index: 2;
+
+  .content-inner {
+    margin-left: 80px; // Yazıyı ve giriş kısmını sağa iten ana değer
+    // Daha fazla sağa çekmek istersen bu değeri (örn: 120px) artırabilirsin.
+    
+    h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1.5rem;
+      color: #4a3728;
+    }
+
+    p {
+      max-width: 420px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+  }
+}
+
+// Giriş kısmının hizasını korumak için
+.login-form {
+  input {
+    width: 320px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .btn-login {
+    width: 160px; // Giriş butonunun genişliği
+    padding: 12px;
+    background-color: #f2a93b;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+// Görselin çok büyük olup metni sıkıştırmaması için
+// .hero-image {
+//   flex: 1;
+//   text-align: right;
+  
+//   img {
+//     max-width: 90%; // Görseli biraz küçülterek metne alan açabiliriz
+//     height: auto;
+//   }
+// }
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  z-index: 5;
+
+  .text-section {
+    max-width: 460px;
+    margin-left: 110px; // Bu değeri artırdıkça yazılar sağa kayar. 
+                       // İdeal bir görünüm için 80px ile 150px arasını deneyebilirsin.
+
+    .title {
+      font-size: 3.5rem;
+      // ... diğer kodların aynı kalsın
+    }
+  }
+}
+
+
+.main-content {
+  display: flex;
+  justify-content: space-between; // İki uca yaslar
+  align-items: center;
+  flex: 1;
+  z-index: 5;
+
+  .text-section {
+    max-width: 450px;
+    margin-left: 150px; // Yazıları sağa itmek için bu değeri artırdık
+  }
+
+  .image-section {
+    margin-right: 120px; // Resmi küçültmeden sola kaydırmak için sağdan boşluk verdik
+    
+    .hero-image {
+      width: 550px; // Orijinal boyutunu koruduk
+      height: auto;
+      display: block;
+    }
+  }
+}
