@@ -5,8 +5,9 @@
         <h5 class="card-title m-0">📚 Kitap Yönetimi</h5>
       </div>
       <div class="col-auto">
-        <button class="btn btn-primary btn-sm" (click)="openCreateModal()">
-          <i class="fa fa-plus me-1"></i> Yeni Kitap
+        <button id="create" class="btn btn-primary" type="button" (click)="createBook()">
+          <i class="fa fa-plus me-1"></i>
+          <span>{{ 'NewBook' | abpLocalization }}</span>
         </button>
       </div>
     </div>
@@ -32,12 +33,12 @@
           <td>{{ book.pageCount }}</td>
           <td>
             <span [class]="getStatusClass(book.status)">
-                {{ getStatusLabel(book.status) | abpLocalization }}
+              {{ getStatusLabel(book.status) | abpLocalization }}
             </span>
           </td>
           <td>
             <button class="btn btn-danger btn-sm" (click)="deleteBook(book)">
-                <i class="fa fa-trash"></i>
+              <i class="fa fa-trash"></i>
             </button>
           </td>
         </tr>

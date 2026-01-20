@@ -1,60 +1,56 @@
 <abp-modal [(visible)]="isModalOpen" [busy]="isBusy">
-  
-  <ng-template #header>
-    <h3>{{ '::NewBook' | abpLocalization }}</h3>
+  <ng-template #abpHeader>
+    <h3>{{ 'NewBook' | abpLocalization }}</h3>
   </ng-template>
 
-  <ng-template #body>
-    <form [formGroup]="form" (ngSubmit)="save()">
-      
+  <ng-template #abpBody>
+    <form [formGroup]="form" (ngSubmit)="save()" id="book-form">
       <div class="mb-3">
-        <label class="form-label">{{ '::BookName' | abpLocalization }}</label>
-        <input type="text" class="form-control" formControlName="name" 
-               [ngClass]="{'is-invalid': form.get('name').invalid && form.get('name').touched}">
-        <div *ngIf="form.get('name').errors?.['required']" class="invalid-feedback">
-          Kitap adı zorunludur.
-        </div>
+        <label class="form-label">{{ 'BookName' | abpLocalization }}</label>
+        <input type="text" class="form-control" formControlName="name" autofocus>
       </div>
 
       <div class="mb-3">
-        <label class="form-label">{{ '::Author' | abpLocalization }}</label>
-        <select class="form-select" formControlName="authorId">
-          <option [ngValue]="null">Seçiniz...</option>
-          <option *ngFor="let author of authors" [ngValue]="author.id">
-            {{ author.name }}
-          </option>
+        <label class="form-label">Yazar</label>
+        <select class="form-control" formControlName="authorId">
+          <option [ngValue]="null">Seçiniz</option>
+          <option *ngFor="let author of authors" [ngValue]="author.id">{{ author.name }}</option>
         </select>
       </div>
 
       <div class="mb-3">
-        <label class="form-label">{{ '::Category' | abpLocalization }}</label>
-        <select class="form-select" formControlName="categoryId">
-          <option [ngValue]="null">Seçiniz...</option>
-          <option *ngFor="let category of categories" [ngValue]="category.id">
-            {{ category.name }}
-          </option>
+        <label class="form-label">Kategori</label>
+        <select class="form-control" formControlName="categoryId">
+          <option [ngValue]="null">Seçiniz</option>
+          <option *ngFor="let cat of categories" [ngValue]="cat.id">{{ cat.name }}</option>
         </select>
       </div>
 
       <div class="row">
-        <div class="col">
-           <div class="mb-3">
-            <label class="form-label">{{ '::PageCount' | abpLocalization }}</label>
-            <input type="number" class="form-control" formControlName="pageCount">
-          </div>
+        <div class="col-6 mb-3">
+          <label class="form-label">Sayfa Sayısı</label>
+          <input type="number" class="form-control" formControlName="pageCount">
+        </div>
+        <div class="col-6 mb-3">
+          <label class="form-label">QR Kod</label>
+          <input type="text" class="form-control" formControlName="qrCode">
         </div>
       </div>
 
+      <div class="mb-3">
+        <label class="form-label">Kitap Kapağı</label>
+        <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+        <div *ngIf="previewUrl" class="mt-2 text-center">
+          <img [src]="previewUrl" class="img-thumbnail" style="max-height: 150px;">
+        </div>
+      </div>
     </form>
   </ng-template>
 
-  <ng-template #footer>
-    <button type="button" class="btn btn-secondary" (click)="isModalOpen = false" abpClose>
-       {{ '::Cancel' | abpLocalization }}
-    </button>
-    <button type="button" class="btn btn-primary" (click)="save()" [disabled]="form.invalid || isBusy">
-       <i class="fa fa-check me-1"></i> {{ '::Save' | abpLocalization }}
+  <ng-template #abpFooter>
+    <button type="button" class="btn btn-secondary" (click)="isModalOpen = false">İptal</button>
+    <button type="submit" form="book-form" class="btn btn-primary" [disabled]="form.invalid || isBusy">
+      <i class="fa fa-check me-1"></i> Kaydet
     </button>
   </ng-template>
-
 </abp-modal>

@@ -1,11 +1,23 @@
 export enum BookStatus {
   Available = 0,
-  Taken = 1,
+  Borrowed = 1,
   Reserved = 2
 }
 
 export const bookStatusOptions = [
-  { value: BookStatus.Available, key: '::Enum:Status.Available', class: 'badge bg-success' },
-  { value: BookStatus.Taken, key: '::Enum:Status.Taken', class: 'badge bg-warning text-dark' },
-  { value: BookStatus.Reserved, key: '::Enum:Status.Reserved', class: 'badge bg-info' },
+  {
+    value: 0,
+    key: 'Enum:Status.Available', // JSON'daki anahtar ile birebir aynı olmalı
+    class: 'badge bg-success'
+  },
+  {
+    value: 1,
+    key: 'Enum:Status.Taken',
+    class: 'badge bg-warning'
+  },
+  {
+    value: 2,
+    key: 'Enum:Status.Reserved',
+    class: 'badge bg-danger'
+  }
 ];

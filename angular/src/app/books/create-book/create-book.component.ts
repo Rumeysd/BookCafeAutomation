@@ -2,28 +2,30 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemeSharedModule, ToasterService } from '@abp/ng.theme.shared';
-import { BookService, CreateUpdateBookDto } from '@proxy/books'; // DTO'yu import et
+import { CoreModule } from '@abp/ng.core'; 
+import { BookService } from '@proxy/books';
 import { AuthorService, AuthorDto } from '@proxy/authors';
 import { CategoryService, CategoryDto } from '@proxy/categories';
-import { finalize } from 'rxjs/operators'; // 👈 İşlem bitişini yakalamak için RxJS operatörü
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-book',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ThemeSharedModule],
+  imports: [CommonModule, ReactiveFormsModule, ThemeSharedModule, CoreModule],
   templateUrl: './create-book.component.html',
 })
 export class CreateBookComponent implements OnInit {
-
   @Output() onSave = new EventEmitter<void>();
 
   form: FormGroup;
-  isModalOpen = false;
-  isBusy = false; // 👈 Sayfa yükleniyor/kaydediliyor durumu
+  isModalOpen = false; 
+  isBusy = false;
 
-  // Dropdown verileri
   authors: AuthorDto[] = [];
   categories: CategoryDto[] = [];
+  
+  previewUrl: string | null = null;
+  selectedImageDto: any = null;
 
   constructor(
     private fb: FormBuilder,
@@ -34,20 +36,19 @@ export class CreateBookComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Component doğduğunda sadece dropdown verilerini hazırla
     this.loadDropdownData();
   }
 
-  // 🔄 Verileri paralel ve dinamik çekme
   loadDropdownData() {
-    // RxJS forkJoin kullanılabilirdi ama basitlik için ayrı ayrı çekiyoruz
-    this.authorService.getList({ maxResultCount: 100 }).subscribe(res => this.authors = res.items);
-    this.categoryService.getList({ maxResultCount: 100 }).subscribe(res => this.categories = res.items);
+    this.authorService.getList({ maxResultCount: 100 }).subscribe(res => (this.authors = res.items));
+    this.categoryService.getList({ maxResultCount: 100 }).subscribe(res => (this.categories = res.items));
   }
 
   openModal() {
-    this.buildForm();
-    this.isModalOpen = true;
+    this.buildForm(); // Her açılışta formu sıfırla
+    this.previewUrl = null;
+    this.selectedImageDto = null;
+    this.isModalOpen = true; 
   }
 
   buildForm() {
@@ -56,31 +57,71 @@ export class CreateBookComponent implements OnInit {
       authorId: [null, Validators.required],
       categoryId: [null, Validators.required],
       pageCount: [null, [Validators.required, Validators.min(1)]],
-      qrCode: [''], // Opsiyonel
-      status: [0] // Varsayılan: Müsait
+      qrCode: [''],
+      status: [0], 
     });
   }
 
-  save() {
-    if (this.form.invalid) {
-      return;
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => (this.previewUrl = reader.result as string);
+      reader.readAsDataURL(file);
+
+      // Backend'deki BookImageDto yapısıyla birebir eşleşme
+      this.selectedImageDto = {
+        fileName: file.name,
+        mimeType: file.type,
+        fileSize: file.size,
+        blobName: file.name 
+      };
     }
+  }
 
-    this.isBusy = true; // ⏳ Yükleniyor dönmeye başlasın
+  save() {
+    // Çift istek gönderimini engellemek için isBusy kontrolü
+    if (this.form.invalid || this.isBusy) return;
+    this.isBusy = true;
 
-    const input: CreateUpdateBookDto = this.form.value;
+    const formValues = this.form.value;
 
+    // Backend'in beklediği temiz DTO yapısı
+    const input = {
+      name: formValues.name,
+      authorId: formValues.authorId,
+      categoryId: formValues.categoryId,
+      pageCount: Number(formValues.pageCount),
+      qrCode: formValues.qrCode || '',
+      status: Number(formValues.status) || 0,
+      images: this.selectedImageDto 
+        ? [
+            {
+              blobName: this.selectedImageDto.blobName,
+              fileName: this.selectedImageDto.fileName,
+              mimeType: this.selectedImageDto.mimeType,
+              fileSize: Number(this.selectedImageDto.fileSize),
+            },
+          ]
+        : [],
+    };
+
+    console.log('API-ye gönderilen veri paketi:', input);
+
+    // Tek bir create çağrısı
     this.bookService.create(input)
-      .pipe(finalize(() => this.isBusy = false)) // 👈 Hata alsa bile busy'i kapat
+      .pipe(finalize(() => (this.isBusy = false)))
       .subscribe({
         next: () => {
-          this.toaster.success('::SavedSuccessfully'); // 🔔 Başarılı
+          // tr.json'daki SavedSuccessfully anahtarını tetikler
+          this.toaster.success('SavedSuccessfully'); 
           this.isModalOpen = false;
           this.onSave.emit();
         },
         error: (err) => {
-          // ABP hataları otomatik gösterir ama özel işlem gerekirse buraya yazılır
-          this.toaster.error('::ErrorOccurred'); 
+          console.error("Kaydetme Hatası Detayı:", err);
+          const errorMessage = err.error?.error?.message || 'Kaydedilirken sunucu tarafında bir hata oluştu!';
+          this.toaster.error(errorMessage);
         }
       });
   }
