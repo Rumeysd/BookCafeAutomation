@@ -1,106 +1,172 @@
+/* ==========================================================================
+   DASHBOARD ANA SAYFA YAPISI
+   ========================================================================== */
+
 .dashboard-page {
   position: relative;
   min-height: 100vh;
-  // Arka plan resmini buraya tanımlıyoruz
-  background: url('./../../assets/images/arkaplan.jpg') no-repeat center center fixed;
+  background: url("/assets/images/arkaplan.jpg") no-repeat center center fixed;
   background-size: cover;
   font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 
+/* ==========================================================================
+   HEADER & KARŞILAMA (Merhaba Rumeysa & Sign Up)
+   ========================================================================== */
+
 .dashboard-header {
-  padding: 30px 0;
+  padding-top: 50px;
+  padding-bottom: 20px;
+
   .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
-//   .user-greeting h1 {
-//     font-size: 1.8rem;
-//     font-weight: 600;
-//     color: #333;
-//     span {
-//       color: #f2a93b; // Senin turuncu tonun
-//     }
-//   }
-
-  .dashboard-nav {
+  .user-greeting h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #333;
     display: flex;
-    gap: 25px;
     align-items: center;
-    a {
-      text-decoration: none;
-      color: #555;
-      font-weight: 500;
+    gap: 15px;
+
+    span {
+      font-family: 'Dancing Script', cursive;
+      color: #f2a93b; 
+      font-size: 3.4rem; 
+      padding-top: 8px; 
     }
   }
 }
 
+.dashboard-nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+    &:hover { color: #f2a93b; }
+  }
+
+  .btn-signup {
+    background-color: #f2a93b;
+    color: white !important;
+    padding: 10px 28px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1;
+    box-shadow: 0 4px 10px rgba(242, 169, 59, 0.2);
+    transition: transform 0.3s, background-color 0.3s;
+
+    &:hover { 
+        transform: translateY(-2px);
+        background-color: darken(#f2a93b, 5%);
+    }
+  }
+}
+
+/* ==========================================================================
+   KARTLARIN YERLEŞİMİ (3 ANA MENÜ)
+   ========================================================================== */
+
 .cards-wrapper {
   display: flex;
-  justify-content: space-between;
-  gap: 30px;
-  padding-top: 50px;
+  justify-content: center;
+  align-items: stretch; // Tüm kart boylarını eşitler
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 40px;
 }
 
 .card {
   flex: 1;
-  background: rgba(255, 255, 255, 0.85); // Kartların hafif şeffaf olması için
-  backdrop-filter: blur(10px); // Arka planın bulanık görünmesi için
-  border-radius: 25px;
-  padding: 40px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+  min-width: 350px;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.92); 
+  backdrop-filter: blur(10px);
+  border-radius: 35px;
+  padding: 45px 35px;
+  padding-top: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.06);
   text-align: center;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
 
-  &:hover {
-    transform: translateY(-10px);
-  }
+  &:hover { transform: translateY(-12px); }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.9rem;
+    text-align: center;
+    margin-top: 15px;
     margin-bottom: 30px;
+    font-weight: 700;
     color: #222;
   }
 }
 
-// Liste Kartı Ayarları
+/* ==========================================================================
+   İÇERİK ÖZELLİKLERİ (LİSTE, QR, KİTAP BİLGİSİ)
+   ========================================================================== */
+
 .card-list {
   text-align: left;
   ul {
     list-style: none;
     padding: 0;
     li {
-      padding: 15px 0;
+      padding: 18px 0;
       border-bottom: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 1.2rem;
       color: #555;
       cursor: pointer;
+      
+      i {
+        color: #f2a93b; 
+        width: 30px;
+        text-align: center;
+        font-size: 1.3rem;
+      }
       &:hover { color: #f2a93b; }
     }
   }
 }
 
-// QR Kartı Ayarları
 .qr-container {
-  background: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  display: inline-block;
-  margin-bottom: 20px;
-  border: 2px dashed #ddd;
-  img { width: 120px; }
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 25px;
+  border: 2px dashed #b08d6d;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  img { width: 100%; height: auto; }
 }
-
-// Buton Renkleri
-.btn-primary { background: #56c2b1; color: white; border: none; padding: 10px 20px; border-radius: 15px; }
-.btn-secondary { background: #b08d6d; color: white; border: none; padding: 10px 20px; border-radius: 15px; }
-.btn-main { background: #56c2b1; color: white; border: none; width: 100%; padding: 12px; border-radius: 25px; margin-bottom: 10px; }
-.btn-accent { background: #f2a93b; color: white; border: none; width: 100%; padding: 12px; border-radius: 25px; }
 
 .book-preview {
   position: relative;
   img {
-    width: 100px;
+    width: 120px;
     border-radius: 10px;
     margin-bottom: 15px;
   }
@@ -115,295 +181,45 @@
   }
 }
 
-/* Arka plan hatasını çözmek için başına / eklemeyi unutma */
-.dashboard-page {
-  min-height: 100vh;
-  background: url("/assets/images/arkaplan.jpg") no-repeat center center fixed;
-  background-size: cover;
-  padding: 20px 0;
-}
+/* ==========================================================================
+   BUTON GRUPLARI (DÜZENLENMİŞ)
+   ========================================================================== */
 
-/* 1. Header ve Menu Kısmını Büyütme */
-.dashboard-header {
-  .user-greeting h1 {
-    font-size: 2.2rem; /* Daha büyük ve belirgin */
-    font-weight: 700;
-    
-    span { color: #f2a93b; }
-  }
-
-  .dashboard-nav {
-    gap: 40px; /* Menü aralarını açtık */
-    a {
-      font-size: 1.1rem;
-      color: #333;
-      &:hover { color: #f2a93b; }
-    }
-  }
-}
-
-/* 2. Kart Yapısını Düzenleme */
-.card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 30px; /* Daha oval köşeler */
-  padding: 50px 40px; /* İç boşluğu artırarak ferahlık sağladık */
-  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
-  
-  h2 {
-    font-size: 1.8rem;
-    margin-bottom: 35px;
-    font-weight: 600;
-  }
-}
-
-/* 3. QR Kod Çerçeve Tasarımı (2. Fotoğraftaki gibi) */
-.qr-container {
-  position: relative;
-  width: 180px;
-  height: 180px;
-  margin: 0 auto 25px;
-  padding: 15px;
-  background: white;
-  border: 2px dashed #b08d6d; /* Kahverengi kesikli çizgiler */
-  border-radius: 20px;
-
-  img {
-    width: 100%;
-    height: auto;
-  }
-
-  /* QR kodun ortasındaki kamera ikonu efekti için */
-  &::after {
-   
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5rem;
-    background: white;
-    padding: 5px;
-    border-radius: 5px;
-  }
-}
-
-/* 4. Butonları Düzeltme (Daha yassı ve geniş) */
-.btn-primary, .btn-secondary, .btn-main, .btn-accent {
-  border-radius: 15px; /* Çok yuvarlak yerine daha modern yassı köşe */
-  font-weight: 600;
-  padding: 12px 25px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-primary { background-color: #56c2b1; color: white; }
-.btn-secondary { background-color: #b08d6d; color: white; }
-.btn-accent { 
-  background-color: #f2a93b; 
-  color: white; 
-  width: 100%; 
-  margin-top: 10px;
-  box-shadow: 0 4px 15px rgba(242, 169, 59, 0.3);
-}
-
-/* Okuma Yönetimi Listesi */
-.card-list li {
-  font-size: 1.1rem;
-  padding: 18px 0;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  
-  /* İkonlar için placeholder */
-  &::before { content: "📋"; opacity: 0.5; } 
-}
-
-/* Kitap Bilgisi Kartındaki Buton Grubu */
 .card-actions {
   display: flex;
-  flex-direction: column; // Butonları alt alta dizmek için
+  flex-direction: column; // Butonları her zaman alt alta dizer
   gap: 12px;
+  margin-top:15px; 
   width: 100%;
-  padding: 0 20px;
 
   button {
-    width: 100%; // Tüm butonlar kart genişliğine yayılsın
-    height: 45px; // Sabit bir yükseklik vererek taşmaları önleyelim
-    border-radius: 12px;
+    width: 100%; // Butonların tam genişlikte olmasını sağlar
+    height: 52px;
+    border-radius: 15px;
     font-weight: 600;
+    font-size: 1.1rem;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    transition: opacity 0.2s;
+    &:hover { opacity: 0.9; }
   }
-
-  .btn-main {
-    background-color: #56c2b1;
-    color: white;
-  }
-
-  /* Sorunlu olan buton */
-  .btn-outline {
-    background-color: #f1f1f1; // Referans görseldeki gibi açık gri/vizon tonu
-    color: #666;
+  
+  .btn-primary, .btn-main { background: #56c2b1; color: white; }
+  .btn-secondary { background: #b08d6d; color: white; }
+  .btn-outline { 
+    background: #f1f1f1; 
+    color: #666; 
     border: 1px solid rgba(0,0,0,0.05);
-    
-    &:hover {
-      background-color: #e8e8e8;
-    }
   }
-
-  .btn-accent {
-    background-color: #f2a93b;
-    color: white;
+  .btn-accent { 
+    background: #f2a93b; 
+    color: white; 
+    box-shadow: 0 4px 12px rgba(242, 169, 59, 0.2);
   }
 }
 
-.dashboard-nav {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-
-  a {
-    text-decoration: none;
-    color: #444;
-    font-weight: 500;
-    font-size: 15px;
-  }
-
-  .btn-signup {
-    background-color: #f2a93b;
-    color: white !important;
-    padding: 10px 25px;
-    border-radius: 20px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(242, 169, 59, 0.2);
-    
-    &:hover {
-      transform: translateY(-2px);
-      background-color: darken(#f2a93b, 5%);
-    }
-  }
-}
-
-.user-greeting {
-  margin-bottom: 30px;
-  
-  h1 {
-    font-size: 2.4rem;
-    font-weight: 800;
-    color: #333;
-    
-    span {
-      color: #f2a93b;
-      font-family: 'Dancing Script', cursive; // Daha sanatsal bir font seçebilirsin
-    }
-  }
-}
-
-
-.user-greeting {
-  h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    span {
-      font-family: 'Dancing Script', cursive; // El yazısı fontu
-      color: #f2a93b;
-      font-size: 2.8rem; // El yazısı fontları genelde küçük görünür, o yüzden biraz büyüttük
-      font-weight: 600;
-      margin-top: -5px; // Hizalamayı dengelemek için
-    }
-  }
-}
-
-/* Sign Up Butonunun Düzeltilmesi */
-.nav {
-  .btn-signup {
-    background-color: #f2a93b;
-    color: white !important;
-    border: none;
-    padding: 8px 25px;
-    border-radius: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    // Eğer siyah bir kutu görünüyorsa default stilleri temizlemek için:
-    outline: none;
-    box-shadow: none;
-    
-    &:hover {
-      background-color: darken(#f2a93b, 5%);
-    }
-  }
-}
-
-/* Şu An Okunuyor Butonunun Düzeltilmesi */
-.btn-outline {
-  width: 100%;
-  padding: 12px;
-  background-color: #f1f1f1; // Referansındaki o açık gri ton
-  color: #555;
-  border: 1px solid rgba(0,0,0,0.05);
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 14px;
-  white-space: nowrap; // Metnin aşağı kaymasını önler
-  display: block;
-  margin: 10px 0;
-  
-  &:hover {
-    background-color: #e8e8e8;
-  }
-}
-
-/* 1. Header boşluğunu daraltalım */
-.dashboard-header {
-  padding-top: 20px; // 30px'den 15px'e düşürdük
-  padding-bottom: 0px;
-  .user-greeting h1 {
-    margin: 5px; // Ekstra boşlukları sıfırladık
-    font-size: 3rem; // Biraz küçülterek yer kazandık
-    
-    span {
-      font-size: 3rem; // El yazısı yine belirgin kalsın
-    }
-  }
-}
-
-
-
-
-.card-actions {
-  gap: 8px; // Butonların birbirine olan mesafesini daralttık
-}
-
-/* 5. Okuma Listesi satır aralıkları */
-.card-list li {
-  padding: 10px 0; // Liste elemanlarını birbirine yaklaştırdık
-  font-size: 1rem;
-}
-
-.dashboard-nav {
-  display: flex;
-  align-items: center; // Dikeyde tam ortalar
-  gap: 25px;
-
-  .btn-signup {
-    margin: 0; 
-    line-height: 1; // Kutunun büyümesini engeller
-    padding: 8px 20px;
-  }
-}
-.main-content {
-  max-height: calc(100vh - 80px); // Header'ı çıkarıp kalan alanı kullanır
-  display: flex;
-  align-items: center; // İçeriği dikeyde ortalar
+/* HTML'de QR kartı içindeki inline style'ı ezmek için ek kural */
+.card-qr .card-actions {
+  display: flex !important;
+  flex-direction: column !important;
 }
