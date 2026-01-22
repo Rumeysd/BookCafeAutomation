@@ -1,10 +1,15 @@
 import { Routes } from '@angular/router';
-// 👇 BURAYI DEĞİŞTİR: Kendi klasöründeki login componentini çağırıyoruz
 import { LoginComponent } from './login/login.component'; 
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 export const appRoutes: Routes = [
  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent }, // Artık senin şık tasarımın görünecek!
+
+  {
+    path: 'user-dashboard',
+    component: UserDashboardComponent,
+  },
   
   {
     path: 'books',

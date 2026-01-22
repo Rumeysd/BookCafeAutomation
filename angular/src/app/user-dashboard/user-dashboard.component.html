@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<div class="dashboard-page">
+    <header class="dashboard-header">
+        <div class="container header-content">
+            <div class="user-greeting">
+                <h1>Merhaba, <span>Rumeysa</span></h1>
+            </div>
+            <nav class="dashboard-nav">
+                <a href="#">Menus</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <button class="btn-signup">Sign Up</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard-content">
+        <div class="container cards-wrapper">
+
+            <div class="card card-list">
+                <h2>Okuma Yönetimi</h2>
+                <ul>
+                    <li><i class="fa-solid fa-book-open"></i> Okuduğum Kitaplar</li>
+                    <li><i class="fa-solid fa-bookmark"></i> Yarım Kalan Kitaplar</li>
+                    <li><i class="fa-solid fa-hand-holding-heart"></i> Ödünç Alınan Kitaplar</li>
+                    <li><i class="fa-solid fa-clock-rotate-left"></i> Okuma Geçmişi</li>
+                </ul>
+            </div>
+
+            <div class="card card-qr">
+                <h2>Yeni Kitap Tara</h2>
+                <div class="qr-container">
+                    <img src="assets/images/qr_code.png" alt="QR">
+                </div>
+                <p>Okumaya başladığın kitabın barkodunu okutabilirsin.</p>
+                <div class="card-actions" style="flex-direction: row; justify-content: center;">
+                    <button class="btn-primary" style="width: auto;">Taramayı Başlat</button>
+                    <button class="btn-secondary" style="width: auto;">Manuel Giriş</button>
+                </div>
+            </div>
+
+            <div class="card card-info">
+                <h2>Kitap Bilgisi</h2>
+                <div class="book-preview">
+                    <span class="badge">Müsait</span>
+                    <img src="../../assets/images/kitap.jpg" alt="Kitap">
+                    <h3>Ölmek İstiyorum Ama Tteokbokki de Yemek İstiyorum</h3>
+                    <span>Aylin Yılmaz</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn-main">Şimdi Oku!</button>
+                    <button class="btn-outline">Şu An Okunuyor</button>
+                    <button class="btn-accent">Paylaş</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>

@@ -1,8 +1,52 @@
+// 1. Değişkenlere el yazısı fontunu tanımlıyoruz
 $primary-orange: #e67e22;
 $dark-text: #4e342e;
 $light-text: #6d4c41;
-$bg-color: #f5e0c8; // Görseldeki o açık krem tonu
+$bg-color: #f1dfc9;
+$script-font: 'Dancing Script', cursive; // El yazısı fontu değişkeni
 
+// ... (Header ve diğer ayarların aynı kalıyor)
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  z-index: 5;
+
+  .text-section {
+    max-width: 450px;
+    margin-left: 150px; 
+
+    .title {
+      font-size: 3.5rem;
+      color: $dark-text;
+      margin-bottom: 20px;
+      line-height: 1.1;
+      font-weight: 700;
+      display: flex;           // Satırları ayırmak için eklendi
+      flex-direction: column;
+      .line-1 {
+        // white-space: nowrap ekleyerek kelimelerin asla alt satıra geçmemesini garanti ediyoruz.
+        white-space: nowrap; 
+       
+        font-size: 3.5rem;
+        // ...
+      }
+      
+
+      // Bir Satır Huzur... kısmını değiştiren yer tam burası:
+      .line-2 {
+        font-family: $script-font; // El yazısı stili
+        color: $primary-orange;    // Turuncu renk
+        font-size: 3.2rem;         // Boyut
+        padding-left: 70px;        // Sağa kaydırma (merdiven etkisi)
+        margin-top: 10px;          // Üst satırla mesafe
+        font-weight: 500;          // El yazısının çok kaba durmaması için
+      }
+    }
+  }
+}
 .login-page {
   position: relative;
   width: 100%;
@@ -144,26 +188,37 @@ $bg-color: #f5e0c8; // Görseldeki o açık krem tonu
   opacity: 0.7;
 }
 
+// Turuncu küçük daire - Biraz yukarı ve sola aldık
 .circle-orange {
-  width: 80px; height: 80px;
+  width: 75px;         // Biraz küçülterek derinlik hissi verdik
+  height: 75px;
   background: #f19035;
   border-radius: 50%;
-  top: 35%; left: 45%;
+  top: 25%;            // %35'ten %25'e çekerek yukarı taşıdık
+  left: 40%;           // %45'ten %40'a çekerek sola taşıdık
+  opacity: 0.9;
 }
 
+// Mor orta boy daire - Biraz daha aşağı ve sağa aldık
 .circle-purple {
-  width: 90px; height: 90px;
+  width: 100px;        // Boyutu biraz artırarak hiyerarşi kurduk
+  height: 100px;
   background: #9356b9;
   border-radius: 50%;
-  top: 48%; left: 43%;
+  top: 55%;            // %48'den %55'e çekerek aşağı indirdik
+  left: 48%;           // %43'ten %48'e çekerek sağa kaydırdık
+  opacity: 0.8;
 }
 
+// Alt merkezdeki mor büyük blob - Daha aşağı ve merkeze tam oturttuk
 .blob-bottom-center {
-  width: 300px; height: 150px;
+  width: 350px; 
+  height: 180px;
   background: #9356b9;
-  border-radius: 150px 150px 0 0;
-  bottom: -20px; left: 35%;
-  opacity: 0.6;
+  border-radius: 175px 175px 0 0;
+  bottom: -40px;       // Daha fazla gömdük ki sadece tepe kısmı görünsün
+  left: 30%;           // Biraz sola kaydırarak asimetri oluşturduk
+  opacity: 0.4;        // Daha soft bir geçiş için opaklığı azalttık
 }
 
 .blob-right-bottom {
@@ -252,6 +307,46 @@ $bg-color: #f5e0c8; // Görseldeki o açık krem tonu
   }
 }
 
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px; // Önceki mesajdaki sağa kaydırma ayarlarıyla uyumlu
+  margin-bottom: 20px;
+
+  input {
+    width: 100%;
+    padding: 16px 20px;
+    padding-right: 45px; // İkon için sağda yer ayırdık
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-size: 16px;
+    color: #4a3728;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); // Hafif derinlik
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: #f2a93b;
+      box-shadow: 0 4px 20px rgba(242, 169, 59, 0.2);
+    }
+
+    &::placeholder {
+      color: #b5b5b5;
+    }
+  }
+
+  .user-icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-style: normal;
+    font-size: 18px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
 
 .main-content {
   display: flex;

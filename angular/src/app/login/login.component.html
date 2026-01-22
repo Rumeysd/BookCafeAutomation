@@ -1,3 +1,6 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Dancing+Script:wght@600&display=swap"
+  rel="stylesheet">
 <div class="login-page">
   <div class="shape blob-left-top"></div>
   <div class="shape blob-right-top"></div>
@@ -5,7 +8,7 @@
   <div class="shape circle-purple"></div>
   <div class="shape blob-bottom-center"></div>
   <div class="shape blob-right-bottom"></div>
-
+ 
   <header class="header">
     <div class="logo-area">
       <div class="logo-icon">
@@ -13,7 +16,7 @@
       </div>
       <span class="brand-name">BOOK CAFE</span>
     </div>
-    
+
     <nav class="nav">
       <div class="menu-icon"><span></span><span></span><span></span></div>
       <button class="btn-signup">Sign Up</button>
@@ -22,7 +25,10 @@
 
   <main class="main-content">
     <div class="text-section">
-      <h1 class="title">Bir Yudum Kahfe, <br> Bir Satır Huzur...</h1>
+      <h1 class="title">
+        <span class="line-1">Bir Yudum Kahve,</span>
+        <span class="line-2">Bir Satır Huzur...</span>
+      </h1>
       <p class="description">
         Merhaba! Dışarıdaki dünyayı <br>
         biraz sessize alıp kahvenle <br>
@@ -31,16 +37,25 @@
       </p>
 
       <div class="form-container">
-        <div class="input-wrapper">
-          <input type="text" placeholder="Telefon Numaranızı Girin">
-          <i class="user-icon">👤</i>
-        </div>
-        <button class="btn-login">Giriş Yap</button>
+      <div class="input-wrapper">
+  <input 
+    type="text" 
+    id="phoneInput" 
+    placeholder="0 (5XX) XXX XX XX" 
+    maxlength="11" 
+    inputmode="numeric"
+    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+  >
+  <i class="user-icon">👤</i>
+</div>
+        <button class="btn-login" (click)="onLogin()">Giriş Yap</button>
       </div>
     </div>
 
     <div class="image-section">
       <img src="assets/images/bookcase-cat.jpg" alt="Library Cat" class="hero-image">
     </div>
+    
   </main>
 </div>
+
