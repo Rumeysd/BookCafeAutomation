@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Account;
+﻿using Microsoft.AspNetCore.Identity;
+using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -27,8 +28,8 @@ public class BookCafeAutomationApplicationModule : AbpModule
       
         Configure<AbpAutoMapperOptions>(options =>
         {
-            
-            options.AddMaps<BookCafeAutomationApplicationModule>();
+
+             options.AddMaps<BookCafeAutomationApplicationModule>();
         });
     }
 }
