@@ -3076,6 +3076,21 @@
             }
           ],
           "actions": {
+            "GetCurrentUserNameAsync": {
+              "uniqueName": "GetCurrentUserNameAsync",
+              "name": "GetCurrentUserNameAsync",
+              "httpMethod": "GET",
+              "url": "api/app/customer/current-user-name",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.String",
+                "typeSimple": "string"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "BookCafeAutomation.Customers.CustomerAppService"
+            },
             "CreateAsyncByInput": {
               "uniqueName": "CreateAsyncByInput",
               "name": "CreateAsync",

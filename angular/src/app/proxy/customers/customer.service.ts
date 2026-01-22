@@ -36,6 +36,15 @@ export class CustomerService {
     { apiName: this.apiName,...config });
   
 
+  getCurrentUserName = (config?: Partial<Rest.Config>) =>
+    this.restService.request<any, string>({
+      method: 'GET',
+      responseType: 'text',
+      url: '/api/app/customer/current-user-name',
+    },
+    { apiName: this.apiName,...config });
+  
+
   getList = (input: PagedAndSortedResultRequestDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, PagedResultDto<CustomerDto>>({
       method: 'GET',
