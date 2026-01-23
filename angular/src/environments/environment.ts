@@ -10,13 +10,13 @@ export const environment = {
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44390/', // Backend adresin
-    redirectUri: baseUrl,
-    clientId: 'BookCafeAutomation_App', // Backend'deki ClientId ile aynı olmalı
+    issuer: 'https://localhost:44390', 
+    redirectUri: baseUrl, // Giriş sonrası döneceği ana adres
+    clientId: 'BookCafeAutomation_App', 
     responseType: 'code',
-    scope: 'openid profile offline_access BookCafeAutomation', // openid ve profile standarttır, ekledim
-    requireHttps: true, // Localde SSL (https) kullanıyorsan true kalmalı
-    showDebugInformation: true, // Hata alırsan konsolda detay görmek için ekledim
+    scope: 'openid profile offline_access BookCafeAutomation', 
+    requireHttps: false, // KRİTİK DÜZELTME: Localde sorun çıkmaması için false olmalı
+    showDebugInformation: true, 
   },
   apis: {
     default: {

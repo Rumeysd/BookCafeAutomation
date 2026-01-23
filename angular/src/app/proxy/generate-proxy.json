@@ -2967,18 +2967,59 @@
             }
           }
         },
-        "BookCafeAutomation.Customers.CustomerAppService": {
+        "CustomerAppService": {
           "controllerName": "Customer",
           "controllerGroupName": "Customer",
           "isRemoteService": true,
           "isIntegrationService": false,
           "apiVersion": null,
-          "type": "BookCafeAutomation.Customers.CustomerAppService",
+          "type": "CustomerAppService",
           "interfaces": [
             {
               "type": "BookCafeAutomation.Customers.ICustomerAppService",
               "name": "ICustomerAppService",
               "methods": [
+                {
+                  "name": "GetCurrentUserNameAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.String",
+                    "typeSimple": "string"
+                  }
+                },
+                {
+                  "name": "RegisterAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "name",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "surname",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "phoneNumber",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Boolean",
+                    "typeSimple": "boolean"
+                  }
+                },
                 {
                   "name": "GetAsync",
                   "parametersOnMethod": [
@@ -3088,8 +3129,85 @@
                 "type": "System.String",
                 "typeSimple": "string"
               },
-              "allowAnonymous": false,
-              "implementFrom": "BookCafeAutomation.Customers.CustomerAppService"
+              "allowAnonymous": true,
+              "implementFrom": "BookCafeAutomation.Customers.ICustomerAppService"
+            },
+            "RegisterAsyncByNameAndSurnameAndPhoneNumber": {
+              "uniqueName": "RegisterAsyncByNameAndSurnameAndPhoneNumber",
+              "name": "RegisterAsync",
+              "httpMethod": "POST",
+              "url": "api/app/customer/register",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "name",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "surname",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "phoneNumber",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "name",
+                  "name": "name",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "surname",
+                  "name": "surname",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "phoneNumber",
+                  "name": "phoneNumber",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Boolean",
+                "typeSimple": "boolean"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "BookCafeAutomation.Customers.ICustomerAppService"
             },
             "CreateAsyncByInput": {
               "uniqueName": "CreateAsyncByInput",
@@ -6970,13 +7088,13 @@
           "isNullable": false
         },
         {
-          "name": "Email",
+          "name": "Surname",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
           "isRequired": true,
-          "minLength": null,
-          "maxLength": null,
+          "minLength": 0,
+          "maxLength": 128,
           "minimum": null,
           "maximum": null,
           "regex": null,
@@ -6987,9 +7105,9 @@
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
+          "isRequired": true,
+          "minLength": 0,
+          "maxLength": 11,
           "minimum": null,
           "maximum": null,
           "regex": null,
@@ -6998,7 +7116,7 @@
       ]
     },
     "BookCafeAutomation.Customers.CustomerDto": {
-      "baseType": "Volo.Abp.Application.Dtos.AuditedEntityDto<System.Guid>",
+      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
       "isEnum": false,
       "enumNames": null,
       "enumValues": null,
@@ -7018,7 +7136,7 @@
           "isNullable": false
         },
         {
-          "name": "Email",
+          "name": "Surname",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -7035,6 +7153,19 @@
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false
+        },
+        {
+          "name": "Score",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,

@@ -9,10 +9,13 @@ namespace BookCafeAutomation.Customers
         public string Name { get; set; }
 
         [Required]
-        [EmailAddress] 
-        public string Email { get; set; }
+        [StringLength(128)]
+        public string Surname { get; set; } // Email yerine Surname eklendi
 
-        [Phone]
+        [Required]
+        [StringLength(11)]
         public string PhoneNumber { get; set; }
+
+   
     }
 }

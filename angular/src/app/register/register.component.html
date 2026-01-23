@@ -1,0 +1,24 @@
+<div class="register-wrapper">
+  <div class="register-card">
+    <h2>Yeni Kayıt</h2>
+    <p>Bilgilerinizi girerek hemen katılın.</p>
+
+    <div class="input-group">
+      <input type="text" [(ngModel)]="model.name" name="name" placeholder="Adınız" required />
+    </div>
+
+    <div class="input-group">
+      <input type="text" [(ngModel)]="model.surname" name="surname" placeholder="Soyadınız" required />
+    </div>
+
+    <div class="input-group">
+      <input type="text" [(ngModel)]="model.phone" name="phone" placeholder="Telefon (05xxxxxxxxx)" maxlength="11" required />
+    </div>
+
+    <button class="register-btn" (click)="onRegister()">Hesap Oluştur</button>
+    
+    <div class="footer">
+      <a routerLink="/login">Zaten bir hesabım var, giriş yap</a>
+    </div>
+  </div>
+</div>

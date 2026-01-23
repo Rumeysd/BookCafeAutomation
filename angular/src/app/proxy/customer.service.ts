@@ -1,4 +1,4 @@
-import type { CreateUpdateCustomerDto, CustomerDto } from './models';
+import type { CreateUpdateCustomerDto, CustomerDto } from './customers/models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable, inject } from '@angular/core';
@@ -50,6 +50,15 @@ export class CustomerService {
       method: 'GET',
       url: '/api/app/customer',
       params: { sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
+    },
+    { apiName: this.apiName,...config });
+  
+
+  register = (name: string, surname: string, phoneNumber: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, boolean>({
+      method: 'POST',
+      url: '/api/app/customer/register',
+      params: { name, surname, phoneNumber },
     },
     { apiName: this.apiName,...config });
   

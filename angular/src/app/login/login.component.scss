@@ -370,3 +370,27 @@ $script-font: 'Dancing Script', cursive; // El yazısı fontu değişkeni
     }
   }
 }
+
+.btn-signup {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745; // Kayıt için genelde yeşil tonlar tercih edilir
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+
+  &:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}

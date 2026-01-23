@@ -17,6 +17,10 @@ export class LoginComponent {
     private authService: AuthService
   ) {}
 
+  goToRegister() {
+  this.router.navigate(['/register']);
+}
+
   onLogin() {
     // HTML'deki input'tan telefon numarasını alıyoruz
     const phoneInput = document.getElementById('phoneInput') as HTMLInputElement;

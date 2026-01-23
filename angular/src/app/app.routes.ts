@@ -1,15 +1,18 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component'; 
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { RegisterComponent } from './register/register.component';
 
 export const appRoutes: Routes = [
  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent }, // Artık senin şık tasarımın görünecek!
+  { path: 'login', component: LoginComponent }, 
 
   {
     path: 'user-dashboard',
     component: UserDashboardComponent,
   },
+
+  { path: 'register', component: RegisterComponent },
   
   {
     path: 'books',
